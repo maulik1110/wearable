@@ -12,14 +12,14 @@ import {
   setIsCartOpen,
 } from "../../state";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import Close from "@mui/icons-material/Close";
 
 const FlexBox = styled(Box)`
   display: flex;
-  justify-content: spacr-between;
+  justify-content: space-between;
   align-items: center;
 `;
-import React from "react";
-import Close from "@mui/icons-material/Close";
 
 const CartMenu = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const CartMenu = () => {
 
   return (
     <Box //overlay pura screen leke
-      display={setIsCartOpen ? "block" : "none"}
+      display={isCartOpen ? "block" : "none"}
       backgroundColor="rgba(0,0,0,0.4)"
       position={"fixed"}
       zIndex={10}

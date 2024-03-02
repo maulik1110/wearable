@@ -26,9 +26,13 @@ const CartMenu = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  // const totalPrice = cart.reduce((total, item) => {
+  //   return total + item.count * item.attribute.price;
+  // }, 0);
   const totalPrice = cart.reduce((total, item) => {
-    return total + item.count * item.attribute.price;
+    return total + (item.count * item.attribute?.price || 0); // Using optional chaining and providing a fallback value
   }, 0);
+  
 
   return (
     <Box //overlay pura screen leke
@@ -63,7 +67,8 @@ const CartMenu = () => {
           {/* cart list */}
           <Box>
             {cart.map((item) => (
-              <Box key={`${item.attribute.name}-${item.id}`}>
+              item && item.atribute && item.attribute.name && (
+              <Box key={`${item?.attribute?.name}-${item?.id}`}>
                 <FlexBox p={"15px 0"}>
                   <Box flex={"1 1 40%"}>
                     <img
@@ -117,6 +122,9 @@ const CartMenu = () => {
 
                 <Divider />
               </Box>
+
+              )
+              // <Box key={`${item.attribute.name}-${item.id}`}>
             ))}
           </Box>
 
